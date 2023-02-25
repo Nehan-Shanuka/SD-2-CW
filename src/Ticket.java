@@ -16,11 +16,6 @@ public class Ticket {
         seat = input.nextLine();
     }
 
-    /*public static void main() {
-        Person myPerson = new Person();
-        Ticket myTicket = new Ticket();
-        print(myTicket.row, myTicket.seat, myPerson.name, myPerson.surname, myPerson.email);
-    }*/
     public static void print(String row, String seat, String name, String surname, String email){
         System.out.println();
 

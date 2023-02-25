@@ -10,10 +10,10 @@ public class Person {
         System.out.format("%-23s","Enter your name");
         System.out.print(":  ");
         name = input.nextLine();
-        System.out.format("%-23s","Enter your surname : ");
+        System.out.format("%-23s","Enter your surname");
         System.out.print(":  ");
         surname = input.nextLine();
-        System.out.format("%-23s","Enter your email : ");
+        System.out.format("%-23s","Enter your email");
         System.out.print(":  ");
         email = input.nextLine();
     }
