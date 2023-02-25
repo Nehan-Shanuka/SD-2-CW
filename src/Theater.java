@@ -90,6 +90,8 @@ class Theater {
         tickets.get(person_count).add(3, myTicket.row);
         tickets.get(person_count).add(4, myTicket.seat);
 
+        Ticket.price(myTicket.row, myTicket.seat);
+
         person_count++;
 
         if (rows == 1){
@@ -198,11 +200,11 @@ class Theater {
         System.out.print("Enter your email : ");
         String email_input = input_newlist.nextLine();
 
-        System.out.print("Enter the row number you want to cancel : ");
-        int rows = input_list.nextInt();
+        //System.out.print("Enter the row number you want to cancel : ");
+        int rows = 0; //= input_list.nextInt();
 
-        System.out.print("Enter the seat number you want to cancel : ");
-        int seats = input_list.nextInt();
+        //System.out.print("Enter the seat number you want to cancel : ");
+        int seats = 0; // = input_list.nextInt();
 
 
         /*if (Objects.equals(tickets.get(0).get(2), email_input)) {
@@ -212,6 +214,8 @@ class Theater {
         for (int i = 0; i < tickets.toArray().length; i++){
             if (Objects.equals(tickets.get(i).get(2), email_input)){
                 System.out.println("Job is done!");
+                rows = Integer.parseInt(tickets.get(i).get(3));
+                seats = Integer.parseInt(tickets.get(i).get(4));
                 tickets.remove(i);
                 person_count--;
             }

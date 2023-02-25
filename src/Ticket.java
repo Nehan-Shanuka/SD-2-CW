@@ -1,9 +1,10 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Ticket {
     public String row;
     public String seat;
-    int price;
+    //int price;
 
     public Ticket() {
         Scanner input = new Scanner(System.in);
@@ -37,5 +38,36 @@ public class Ticket {
 
         System.out.format("%-25s","The reserved seat number");
         System.out.println(":  " + seat);
+    }
+    public static void price(String row, String seat) {
+        int price = 0;
+        int seat_int = Integer.parseInt(seat);
+
+        if (Objects.equals(row, "1")){
+            if (seat_int > 3 && seat_int < 10){
+                price = 600;
+            }
+            else {
+                price = 500;
+            }
+        }
+        if (Objects.equals(row, "2")){
+            if (seat_int > 4 && seat_int < 12){
+                price = 900;
+            }
+            else {
+                price = 700;
+            }
+        }
+        if (Objects.equals(row, "3")){
+            if (seat_int > 5 && seat_int < 15){
+                price = 1000;
+            }
+            else {
+                price = 800;
+            }
+        }
+        System.out.format("%-25s","Your ticket price is");
+        System.out.println(":  Rs." + price);
     }
 }
