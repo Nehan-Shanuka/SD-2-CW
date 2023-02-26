@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Ticket {
     public String row;
     public String seat;
-    //int price;
+    int price;
 
     public Ticket() {
         Scanner input = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class Ticket {
         System.out.format("%-25s","The reserved seat number");
         System.out.println(":  " + seat);
     }
-    public static void price(String row, String seat) {
+    public static int price(String row, String seat) {
         int price = 0;
         int seat_int = Integer.parseInt(seat);
 
@@ -64,5 +64,6 @@ public class Ticket {
         }
         System.out.format("%-25s","Your ticket price is");
         System.out.println(":  Rs." + price);
+        return price;
     }
 }

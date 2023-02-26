@@ -4,6 +4,7 @@ import java.util.Objects;
 import java. util. Scanner;
 class Theater {
     public static void main(String[] args) {
+
         System.out.println("Welcome to the New Theater");
 
         //initializing row_1, row_2, row_3 String arrays
@@ -73,6 +74,9 @@ class Theater {
             if (option == 6) {
                 load(row_1, row_2, row_3);
             }
+            if (option == 7){
+                show_tickets_info(tickets);
+            }
         }
         while (option_check != 0);
     }
@@ -94,7 +98,7 @@ class Theater {
         Ticket.print(myTicket.row, myTicket.seat, myPerson.name, myPerson.surname, myPerson.email);
 
         //call the price() method in Ticket class
-        Ticket.price(myTicket.row, myTicket.seat);
+        int price = Ticket.price(myTicket.row, myTicket.seat);
 
         //one space allocated for 0 index
         tickets.add(new ArrayList<String>());
@@ -106,14 +110,15 @@ class Theater {
         tickets.get(person_count).add(2, myPerson.email);
         tickets.get(person_count).add(3, myTicket.row);
         tickets.get(person_count).add(4, myTicket.seat);
+        tickets.get(person_count).add(5, String.valueOf(price));
 
         System.out.println();
 
-        for (ArrayList<String> ticket : tickets) {
+        /*for (ArrayList<String> ticket : tickets) {
             System.out.print(ticket + ", ");
-        }
+        }*/
         System.out.println();
-        System.out.println(tickets.size());
+        //System.out.println(tickets.size());
 
         //checking the availability of seat that currant customer prefer
         if (rows == 1){
@@ -411,5 +416,55 @@ class Theater {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+    public static void show_tickets_info(ArrayList<ArrayList<String>> tickets){
+
+        int total = 0;
+
+        for (int i = 0; i < tickets.size(); i++) {
+            for (int j = 0; j < 6; j++) {
+                if (j == 0) {
+                    System.out.format("%-13s", "Name");
+                    System.out.print(": ");
+                    System.out.print(tickets.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 1) {
+                    System.out.format("%-13s", "Surname");
+                    System.out.print(": ");
+                    System.out.print(tickets.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 2) {
+                    System.out.format("%-13s", "Email");
+                    System.out.print(": ");
+                    System.out.print(tickets.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 3) {
+                    System.out.format("%-13s", "Row Number");
+                    System.out.print(": ");
+                    System.out.print(tickets.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 4) {
+                    System.out.format("%-13s", "Seat Number");
+                    System.out.print(": ");
+                    System.out.print(tickets.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 5) {
+                    System.out.format("%-13s", "Price");
+                    System.out.print(": Rs.");
+                    System.out.print(tickets.get(i).get(j));
+                    System.out.println();
+                    total += Integer.parseInt(tickets.get(i).get(j));
+                }
+            }
+        }
+        System.out.println("The total : Rs." + total);
+    }
+    public static void sort_tickets(){
+        
     }
 }
