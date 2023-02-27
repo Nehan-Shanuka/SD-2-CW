@@ -1,80 +1,118 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
-/*// Importing required classes
-import java.util.*;
+class Testing{
+    public static void main(String[] args) {
+        ArrayList<ArrayList<String>> sorted_ticket_list = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> tickets = new ArrayList<ArrayList<String>>();
 
-// Main class
-// MultidimensionalArrayList
-        class Testing {
+        tickets.add(new ArrayList<String>());
+        tickets.get(0).add("h");
+        tickets.get(0).add("h");
+        tickets.get(0).add("h");
+        tickets.get(0).add("1");
+        tickets.get(0).add("1");
+        tickets.get(0).add("500");
 
-            // Method 1
-            // To create and return 2D ArrayList
-            static List create2DArrayList()
-            {
+        tickets.add(new ArrayList<String>());
+        tickets.get(1).add("l");
+        tickets.get(1).add("l");
+        tickets.get(1).add("l");
+        tickets.get(1).add("2");
+        tickets.get(1).add("2");
+        tickets.get(1).add("1000");
 
-                // Creating a 2D ArrayList of Integer type
-                ArrayList<ArrayList<Integer> > x
-                        = new ArrayList<ArrayList<Integer> >();
+        tickets.add(new ArrayList<String>());
+        tickets.get(2).add("g");
+        tickets.get(2).add("g");
+        tickets.get(2).add("g");
+        tickets.get(2).add("3");
+        tickets.get(2).add("3");
+        tickets.get(2).add("900");
 
-                // One space allocated for R0
-                x.add(new ArrayList<Integer>());
+        tickets.add(new ArrayList<String>());
+        tickets.get(3).add("s");
+        tickets.get(3).add("s");
+        tickets.get(3).add("s");
+        tickets.get(3).add("3");
+        tickets.get(3).add("8");
+        tickets.get(3).add("500");
 
-                // Adding 3 to R0 created above x(R0, C0)
-                x.get(0).add(0, 3);
+        sorted_ticket_list.add(new ArrayList<String>());
 
-                // Creating R1 and adding values
-                // Note: Another way for adding values in 2D
-                // collections
-                x.add(
-                        new ArrayList<Integer>(Arrays.asList(3, 4, 6)));
-
-                // Adding 366 to x(R1, C0)
-                x.get(1).add(0, 366);
-
-                // Adding 576 to x(R1, C4)
-                x.get(1).add(4, 576);
-
-                // Now, adding values to R2
-                x.add(2, new ArrayList<>(Arrays.asList(3, 84)));
-
-                // Adding values to R3
-                x.add(new ArrayList<Integer>(
-                        Arrays.asList(83, 6684, 776)));
-
-                // Adding values to R4
-                x.add(new ArrayList<>(Arrays.asList(8)));
-
-                // Appending values to R4
-                x.get(4).addAll(Arrays.asList(9, 10, 11));
-
-                // Appending values to R1, but start appending from
-                // C3
-                x.get(1).addAll(3, Arrays.asList(22, 1000));
-
-                // This method will return 2D array
-                return x;
-            }
-
-            // Method 2
-            // Main driver method
-            public static void main(String args[])
-            {
-                // Display message prior for better readability
-                System.out.println("2D ArrayList :");
-
-                // Printing 2D ArrayList by calling Method 1
-                System.out.println(create2DArrayList());
-            }
+        for (int i = 0; i < 6; i++) {
+            sorted_ticket_list.get(0).add(i,tickets.get(0).get(i));
         }
 
-*/
-public class Testing{
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the string : ");
-        String input1 = input.nextLine();
-        System.out.format("%-15s","The input : ");
-        System.out.println(input1);
+        for (int i = 1; i < tickets.size(); i++){
+            System.out.println(tickets.get(i));
 
+            int num1 = Integer.parseInt(tickets.get(i).get(5));
+            int num2 = Integer.parseInt(sorted_ticket_list.get(0).get(5));
+
+            if (num1 <= num2){
+                sorted_ticket_list.add(0,tickets.get(i));
+            }
+            else {
+                for (int j = 0; j < sorted_ticket_list.size();) {
+                    //System.out.println("Hi");
+                    int num3 = Integer.parseInt(sorted_ticket_list.get(j).get(5));
+                    //System.out.println(num3);
+
+                    //System.out.println(sorted_ticket_list);
+                    j++;
+                    System.out.println(" "+ i + " " + j);
+                    if (num1 < num3) {
+                        sorted_ticket_list.add((j-1),tickets.get(i));
+                        break;
+                    }
+                    else if (i == j) {
+                        sorted_ticket_list.add(tickets.get(i));
+                    }
+                    //System.out.println(sorted_ticket_list);
+                }
+            }
+        }
+        //System.out.println(sorted_ticket_list);
+
+        for (int i = 0; i < sorted_ticket_list.size(); i++){
+            for (int j = 0; j < 6; j++) {
+                if (j == 0) {
+                    System.out.format("%-13s", "Name");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 1) {
+                    System.out.format("%-13s", "Surname");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 2) {
+                    System.out.format("%-13s", "Email");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 3) {
+                    System.out.format("%-13s", "Row Number");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 4) {
+                    System.out.format("%-13s", "Seat Number");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 5) {
+                    System.out.format("%-13s", "Price");
+                    System.out.print(": Rs.");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+            }
+        }
     }
 }

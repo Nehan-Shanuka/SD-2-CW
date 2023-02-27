@@ -1,11 +1,12 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Objects;
-import java. util. Scanner;
+import java.util.*;
+
 class Theater {
     public static void main(String[] args) {
 
+        System.out.println();
         System.out.println("Welcome to the New Theater");
+        System.out.println();
 
         //initializing row_1, row_2, row_3 String arrays
         String[] row_1 = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
@@ -15,6 +16,8 @@ class Theater {
         //initializing an arraylist called tickets for store the ticket data(task 12)
         ArrayList<ArrayList<String>> tickets = new ArrayList<ArrayList<String>>();
         //https://www.geeksforgeeks.org/multidimensional-collections-in-java/
+
+        ArrayList<Integer> price_list = new ArrayList<>();
 
         //to use in the while argument and takes "option" value
         int option_check;
@@ -43,19 +46,21 @@ class Theater {
 
             System.out.println();
             System.out.println(sep_line);
+            System.out.println();
 
             Scanner input = new Scanner(System.in);
-
             System.out.print("Enter option : ");
             int option = input.nextInt();
 
+            System.out.println();
+            System.out.println(sep_line);
             System.out.println();
 
             //assigning the value of option (option_check is for check the condition for do-while loop)
             option_check = option;
 
             if (option == 1) {
-                buy_ticket(row_1, row_2, row_3, tickets, person_count);
+                buy_ticket(row_1, row_2, row_3, tickets, person_count, price_list);
                 person_count++;
             }
             if (option == 2) {
@@ -77,15 +82,21 @@ class Theater {
             if (option == 7){
                 show_tickets_info(tickets);
             }
+            if (option == 8){
+                sort_tickets(tickets);
+            }
         }
         while (option_check != 0);
     }
-    public static void buy_ticket(String[] row_1, String[] row_2, String[] row_3, ArrayList<ArrayList<String>> tickets, int person_count){
+
+    public static void buy_ticket(String[] row_1, String[] row_2, String[] row_3, ArrayList<ArrayList<String>> tickets, int person_count, ArrayList<Integer> price_list){
+
+        System.out.format("%33s","Purchace the Ticket");
+        System.out.println();
+        System.out.println();
 
         //call the Person class
         Person myPerson = new Person();
-
-        System.out.println();
 
         //call the Ticket class
         Ticket myTicket = new Ticket();
@@ -95,7 +106,9 @@ class Theater {
         int seats = Integer.parseInt(myTicket.seat);
 
         //call the print() method in Ticket class
-        Ticket.print(myTicket.row, myTicket.seat, myPerson.name, myPerson.surname, myPerson.email);
+        //Ticket.print(myTicket.row, myTicket.seat, myPerson.name, myPerson.surname, myPerson.email);
+
+        System.out.println();
 
         //call the price() method in Ticket class
         int price = Ticket.price(myTicket.row, myTicket.seat);
@@ -113,12 +126,6 @@ class Theater {
         tickets.get(person_count).add(5, String.valueOf(price));
 
         System.out.println();
-
-        /*for (ArrayList<String> ticket : tickets) {
-            System.out.print(ticket + ", ");
-        }*/
-        System.out.println();
-        //System.out.println(tickets.size());
 
         //checking the availability of seat that currant customer prefer
         if (rows == 1){
@@ -237,7 +244,6 @@ class Theater {
         //initializing rows and seats variables to hold row number and seat number from the tickets arraylist.
         int rows = 0;
         int seats = 0;
-        String pcv;
 
         //checking the email that take from the customer also in the tickets  arraylist.
         for (int i = 0; i < tickets.toArray().length; i++){
@@ -254,9 +260,6 @@ class Theater {
             }
         }
 
-        /*for (ArrayList<String> ticket : tickets) {
-            System.out.print(ticket + ", ");
-        }*/
         System.out.println();
 
         if (rows == 0){
@@ -377,9 +380,6 @@ class Theater {
         }
     }
     public static void load(String[] row_1, String[] row_2, String[] row_3) {
-        /*String[] row_4 = new String[12];
-        String[] row_5 = new String[16];
-        String[] row_6 = new String[20];*/
 
         try {
             File fileObj = new File("seatinfo.txt");
@@ -419,6 +419,7 @@ class Theater {
     }
     public static void show_tickets_info(ArrayList<ArrayList<String>> tickets){
 
+        //initializing and assigning total variable
         int total = 0;
 
         for (int i = 0; i < tickets.size(); i++) {
@@ -464,7 +465,84 @@ class Theater {
         }
         System.out.println("The total : Rs." + total);
     }
-    public static void sort_tickets(){
-        
+    public static void sort_tickets(ArrayList<ArrayList<String>> tickets) {
+
+        //Create a new 2D arraylist to store tickets
+        ArrayList<ArrayList<String>> sorted_ticket_list = new ArrayList<ArrayList<String>>();
+
+        //One space allocated for 0 index
+        sorted_ticket_list.add(new ArrayList<String>());
+
+        //Adding first element of tickets arraylist
+        for (int i = 0; i < 6; i++) {
+            sorted_ticket_list.get(0).add(i,tickets.get(0).get(i));
+        }
+
+        //Adding each element in tickets to sorted_tickets_list in an ascending way according to the seat price
+        for (int i = 1; i < tickets.size(); i++) {
+
+            int num1 = Integer.parseInt(tickets.get(i).get(5));
+            int num2 = Integer.parseInt(sorted_ticket_list.get(0).get(5));
+
+            if (num1 <= num2) {
+                sorted_ticket_list.add(0,tickets.get(i));
+            }
+            else {
+                for (int j = 0; j < sorted_ticket_list.size();) {
+                    int num3 = Integer.parseInt(sorted_ticket_list.get(j).get(5));
+                    j++;
+
+                    if (num1 < num3) {
+                        sorted_ticket_list.add((j-1),tickets.get(i));
+                        break;
+                    }
+                    else if (i == j) {
+                        sorted_ticket_list.add(tickets.get(i));
+                    }
+                }
+            }
+        }
+
+        //Print sorted_tickets_list
+        for (int i = 0; i < sorted_ticket_list.size(); i++){
+            for (int j = 0; j < 6; j++) {
+                if (j == 0) {
+                    System.out.format("%-13s", "Name");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 1) {
+                    System.out.format("%-13s", "Surname");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 2) {
+                    System.out.format("%-13s", "Email");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 3) {
+                    System.out.format("%-13s", "Row Number");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 4) {
+                    System.out.format("%-13s", "Seat Number");
+                    System.out.print(": ");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+                if (j == 5) {
+                    System.out.format("%-13s", "Price");
+                    System.out.print(": Rs.");
+                    System.out.print(sorted_ticket_list.get(i).get(j));
+                    System.out.println();
+                }
+            }
+        }
     }
 }

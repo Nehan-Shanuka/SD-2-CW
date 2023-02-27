@@ -62,7 +62,7 @@ public class Ticket {
                 price = 800;
             }
         }
-        System.out.format("%-25s","Your ticket price is");
+        System.out.format("%-23s","Your ticket price is");
         System.out.println(":  Rs." + price);
         return price;
     }
