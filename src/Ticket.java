@@ -7,12 +7,14 @@ public class Ticket {
     int price;
 
     public Ticket() {
+
         Scanner input = new Scanner(System.in);
         System.out.format("%-23s","Enter the row number");
-        System.out.print(":  ");
+        System.out.print(":   ");
         row = input.nextLine();
+
         System.out.format("%-23s","Enter the seat number");
-        System.out.print(":  ");
+        System.out.print(":   ");
         seat = input.nextLine();
     }
 

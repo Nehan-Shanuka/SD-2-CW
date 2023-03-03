@@ -7,14 +7,17 @@ public class Person {
 
     public Person (){
         Scanner input = new Scanner(System.in);
+
         System.out.format("%-23s","Enter your name");
-        System.out.print(":  ");
+        System.out.print(":   ");
         name = input.nextLine();
+
         System.out.format("%-23s","Enter your surname");
-        System.out.print(":  ");
+        System.out.print(":   ");
         surname = input.nextLine();
+
         System.out.format("%-23s","Enter your email");
-        System.out.print(":  ");
+        System.out.print(":   ");
         email = input.nextLine();
     }
 }
