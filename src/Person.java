@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class Person {
-    String name;
-    String surname;
-    String email;
+    private String name;
+    private String surname;
+    private String email;
 
-    public Person (){
+     public Person (){
         Scanner input = new Scanner(System.in);
 
         System.out.format("%-23s","Enter your name");
@@ -19,5 +19,17 @@ public class Person {
         System.out.format("%-23s","Enter your email");
         System.out.print(":   ");
         email = input.nextLine();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
