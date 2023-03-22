@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Person {
@@ -5,20 +6,39 @@ public class Person {
     private String surname;
     private String email;
 
-     public Person (){
-        Scanner input = new Scanner(System.in);
+    public Person (String option, String name, String surname, String email){
 
-        System.out.format("%-23s","Enter your name");
-        System.out.print(":   ");
-        name = input.nextLine();
+        if (Objects.equals(option, "no")) {
+            Scanner input = new Scanner(System.in);
 
-        System.out.format("%-23s","Enter your surname");
-        System.out.print(":   ");
-        surname = input.nextLine();
+            System.out.format("%-23s", "Enter your name");
+            System.out.print(":   ");
+            this.name = input.nextLine();
+            this.name = this.name.toUpperCase();
 
-        System.out.format("%-23s","Enter your email");
-        System.out.print(":   ");
-        email = input.nextLine();
+            System.out.format("%-23s", "Enter your surname");
+            System.out.print(":   ");
+            this.surname = input.nextLine();
+            this.surname = this.surname.toUpperCase();
+
+            do {
+                System.out.format("%-23s", "Enter your email");
+                System.out.print(":   ");
+                this.email = input.nextLine();
+
+                //validate the email whether it can be taken as an email or not
+                //https://www.w3schools.com/java/ref_string_contains.asp
+                if (this.email.contains("@")) {
+                    break;
+                }
+                System.out.format("%70s", "***Sorry! Email can not be taken. Try again a with valid email***\n");
+            } while (!(email.contains("@")));
+
+        } else {
+            this.name = name;
+            this.surname = surname;
+            this.email = email;
+        }
     }
 
     public String getName() {

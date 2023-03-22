@@ -1,33 +1,32 @@
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Ticket {
-    private String row;
-    private String seat;
+    private int row;
+    private int seat;
     private int price;
 
     Person Person;
 
-    public Ticket(String option) {
+    public Ticket(String option, String name, String surname, String email) {
 
-        if (Objects.equals(option, "no")) {
-            Person = new Person();
-        }
+        Person = new Person(option, name, surname, email);
 
         Scanner input = new Scanner(System.in);
 
         System.out.format("%-23s","Enter the row number");
         System.out.print(":   ");
-        row = input.nextLine();
+        row = input.nextInt();
 
         System.out.format("%-23s","Enter the seat number");
         System.out.print(":   ");
-        seat = input.nextLine();
+        seat = input.nextInt();
+
+        this.price = price();
     }
 
     public void print(String name, String surname, String email, int price){
 
-        System.out.println("     ****** Ticket ******     ");
+        System.out.println("      ****** Ticket ******      ");
 
         System.out.format("%-25s","Name of the person");
         System.out.println(":  " + name);
@@ -50,40 +49,43 @@ public class Ticket {
     public int price() {
 
         this.price = 0;
-        int seat_int = Integer.parseInt(this.seat);
 
-        if (Objects.equals(row, "1")){
-            if (seat_int > 3 && seat_int < 10){
+        if (row == 1){
+            if (seat > 3 && seat < 10){
                 this.price = 600;
             }
-            else if ((seat_int >= 1 && seat_int <= 3) || (seat_int >= 10 && seat_int <= 12)) {
+            else if ((seat >= 1 && seat <= 3) || (seat >= 10 && seat <= 12)) {
                 this.price = 500;
             }
         }
-        if (Objects.equals(row, "2")){
-            if (seat_int > 4 && seat_int < 12){
+        if (row == 2){
+            if (seat > 4 && seat < 12){
                 this.price = 900;
             }
-            else if ((seat_int >= 1 && seat_int <= 4) || (seat_int >= 12 && seat_int <= 16)) {
+            else if ((seat >= 1 && seat <= 4) || (seat >= 12 && seat <= 16)) {
                 this.price = 700;
             }
         }
-        if (Objects.equals(row, "3")){
-            if (seat_int > 5 && seat_int < 15){
+        if (row == 3){
+            if (seat > 5 && seat < 15){
                 this.price = 1000;
             }
-            else if ((seat_int >= 1 && seat_int <= 5) || (seat_int >= 15 && seat_int <= 20)) {
+            else if ((seat >= 1 && seat <= 5) || (seat >= 15 && seat <= 20)) {
                 this.price = 800;
             }
         }
         return this.price;
     }
 
-    public String getRow() {
+    public int getRow() {
         return row;
     }
 
-    public String getSeat() {
+    public int getSeat() {
         return seat;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
