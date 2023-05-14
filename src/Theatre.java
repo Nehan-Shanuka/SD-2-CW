@@ -80,9 +80,9 @@ class Theatre {
             } else if (option == 6) {
                 load(row_1, row_2, row_3);
             } else if (option == 7) {
-                show_tickets_info(ticket_list);
+                show_tickets_info_modified(ticket_list);
             } else if (option == 8) {
-                sort_tickets(ticket_list);
+                sort_tickets_modified(ticket_list);
             } else {
                 System.out.println();
                 System.out.format("%47s","*** SHUTTING DOWN THE PROGRAM ***\n");
@@ -142,7 +142,7 @@ class Theatre {
                             } else {
                                 row_1[seats - 1] = "1";
                                 ticket_list.add(myTicket);
-                                myTicket.print(name, surname, email, myTicket.price());
+                                //myTicket.print(name, surname, email, myTicket.price());
                                 person_count++;
                             }
                         } else {
@@ -158,7 +158,7 @@ class Theatre {
                             } else {
                                 row_2[seats - 1] = "1";
                                 ticket_list.add(myTicket);
-                                myTicket.print(name, surname, email, myTicket.price());
+                                //myTicket.print(name, surname, email, myTicket.price());
                                 person_count++;
                             }
                         } else {
@@ -174,7 +174,7 @@ class Theatre {
                             } else {
                                 row_3[seats - 1] = "1";
                                 ticket_list.add(myTicket);
-                                myTicket.print(name, surname, email, myTicket.price());
+                                //myTicket.print(name, surname, email, myTicket.price());
                                 person_count++;
                             }
                         } else {
@@ -562,6 +562,30 @@ class Theatre {
         System.out.println("**********************************************\n");
     }
 
+    // modified after the submission to correct "print" method taking from the "Ticket" class
+    public static void show_tickets_info_modified (ArrayList<Ticket> ticket_list) {
+
+        System.out.println();
+        System.out.format("%48s", "Details of The System Available Tickets\n\n");
+
+        int total = 0;
+
+        if (ticket_list.size() != 0) {
+
+            for (Ticket ticket : ticket_list) {
+                ticket.print();
+                total += ticket.price();
+            }
+
+        } else {
+            System.out.println("There is no Issued Tickets so far in the system.");
+        }
+        System.out.println("\n**********************************************");
+        System.out.println("The total price of the issued tickets  :  Rs." + total);
+        System.out.println("**********************************************\n");
+
+    }
+
     public static void sort_tickets(ArrayList<Ticket> ticket_list) {
 
         System.out.println();
@@ -573,6 +597,27 @@ class Theatre {
             ArrayList<Ticket> sorted_ticket_list = MergeSort(ticket_list, 0, ticket_list.size() - 1);
 
             print_ticket(sorted_ticket_list);
+
+        } else {
+            System.out.println("There is no Issued Tickets so far in the system.");
+        }
+        System.out.println();
+    }
+
+    // modified after the submission to correct "print" method taking from the "Ticket" class
+    public static void sort_tickets_modified (ArrayList<Ticket> ticket_list) {
+
+        System.out.println();
+        System.out.format("%45s", "Ascending Ordered List of Tickets\n\n");
+
+        if (ticket_list.size() != 0) {
+
+            //reference with the lecture notes
+            ArrayList<Ticket> sorted_ticket_list = MergeSort(ticket_list, 0, ticket_list.size() - 1);
+
+            for (Ticket ticket : sorted_ticket_list) {
+                ticket.print();
+            }
 
         } else {
             System.out.println("There is no Issued Tickets so far in the system.");
