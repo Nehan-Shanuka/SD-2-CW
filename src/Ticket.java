@@ -7,35 +7,40 @@ public class Ticket {
 
     Person Person;
 
-    public Ticket(String option, String name, String surname, String email) {
+    public Ticket(String name, String surname, String email, int row, int seat) {
 
-        Person = new Person(option, name, surname, email);
-
-        Scanner input = new Scanner(System.in);
-
-        System.out.format("%-23s","Enter the row number");
-        System.out.print(":   ");
-        row = input.nextInt();
-
-        System.out.format("%-23s","Enter the seat number");
-        System.out.print(":   ");
-        seat = input.nextInt();
-
+        this.row = row;
+        this.seat = seat;
+        this.Person = new Person(name, surname, email);
         this.price = price();
+
+//        Person = new Person(option, name, surname, email);
+//
+//        Scanner input = new Scanner(System.in);
+//
+//        System.out.format("%-23s","Enter the row number");
+//        System.out.print(":   ");
+//        row = input.nextInt();
+//
+//        System.out.format("%-23s","Enter the seat number");
+//        System.out.print(":   ");
+//        seat = input.nextInt();
+//
+//        this.price = price();
     }
 
-    public void print(String name, String surname, String email, int price){
+    public void print(){
 
         System.out.println("      ****** Ticket ******      ");
 
         System.out.format("%-25s","Name of the person");
-        System.out.println(":  " + name);
+        System.out.println(":  " + Person.getName());
 
         System.out.format("%-25s","Surname of the person");
-        System.out.println(":  " + surname);
+        System.out.println(":  " + Person.getSurname());
 
         System.out.format("%-25s","Email of the person");
-        System.out.println(":  " + email);
+        System.out.println(":  " + Person.getEmail());
 
         System.out.format("%-25s","The reserved row number");
         System.out.println(":  " + this.row);

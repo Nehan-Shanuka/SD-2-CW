@@ -97,27 +97,57 @@ class Theatre {
         System.out.format("%39s", "Purchase the Ticket\n\n");
 
         //to assign values in Ticket & Person class to new variables
-        int rows;
-        int seats;
+        int rows = 0;
+        int seats = 0;
         String name = "none";
         String surname = "none";
         String email = "none";
         //initializing more_ticket variable to ask whether user want to purchase more tickets under his email or not
         String more_ticket = "no";
 
+        Scanner input = new Scanner(System.in);
+
         do {
-            //call the Ticket class
-            Ticket myTicket = new Ticket(more_ticket, name, surname, email);
-
             if (more_ticket.equals("no")) {
+                System.out.format("%-23s", "Enter your name");
+                System.out.print(":   ");
+                name = input.nextLine();
+                name = name.toUpperCase();
 
-                name = myTicket.Person.getName();
-                surname = myTicket.Person.getSurname();
-                email = myTicket.Person.getEmail();
+                System.out.format("%-23s", "Enter your surname");
+                System.out.print(":   ");
+                surname = input.nextLine();
+                surname = surname.toUpperCase();
+
+                do {
+                    System.out.format("%-23s", "Enter your email");
+                    System.out.print(":   ");
+                    email = input.nextLine();
+
+                    //validate the email whether it can be taken as an email or not
+                    //https://www.w3schools.com/java/ref_string_contains.asp
+                    if (email.contains("@")) {
+                        break;
+                    }
+                    System.out.format("%70s", "***Sorry! Email can not be taken. Try again a with valid email***\n");
+                } while (!(email.contains("@")));
 
             }
 
-            if (!(name.isEmpty() || surname.isEmpty() || email.isEmpty())) {
+            System.out.format("%-23s", "Enter the row number");
+            System.out.print(":   ");
+            rows = input.nextInt();
+
+            System.out.format("%-23s", "Enter the seat number");
+            System.out.print(":   ");
+            seats = input.nextInt();
+
+
+            //call the Ticket class
+            Ticket myTicket = new Ticket(name, surname, email, rows, seats);
+
+
+            if (!(name.isEmpty() || surname.isEmpty())) {
 
                 try {
                     rows = myTicket.getRow();
@@ -191,9 +221,9 @@ class Theatre {
                     System.out.println();
 
                     try {
-                        Scanner input = new Scanner(System.in);
+                        Scanner new_input = new Scanner(System.in);
                         System.out.print("Do you wish to purchase more than one ticket? (yes|no) : ");
-                        more_ticket = input.nextLine();
+                        more_ticket = new_input.nextLine();
                         more_ticket = more_ticket.toLowerCase();
                     } catch (InputMismatchException e) {
                         System.out.println("\nSorry! Input can not readable. Please Try Again.");
