@@ -80,12 +80,12 @@ class Theatre {
             } else if (option == 6) {
                 load(row_1, row_2, row_3);
             } else if (option == 7) {
-                show_tickets_info_modified(ticket_list);
+                show_tickets_info(ticket_list);
             } else if (option == 8) {
-                sort_tickets_modified(ticket_list);
+                sort_tickets(ticket_list);
             } else {
                 System.out.println();
-                System.out.format("%47s","*** SHUTTING DOWN THE PROGRAM ***\n");
+                System.out.format("%47s", "*** SHUTTING DOWN THE PROGRAM ***\n");
             }
         }
         while (option_check != 0);
@@ -345,7 +345,7 @@ class Theatre {
             String all_cancel_opt;
 
             do {
-                System.out.print("Do you want to cancel all the tickets reserved under '"+email_input+"' email? (yes|no) : ");
+                System.out.print("Do you want to cancel all the tickets reserved under '" + email_input + "' email? (yes|no) : ");
                 all_cancel_opt = input.nextLine();
                 all_cancel_opt = all_cancel_opt.toLowerCase();
 
@@ -572,28 +572,8 @@ class Theatre {
         System.out.println();
     }
 
-    public static void show_tickets_info(ArrayList<Ticket> ticket_list) {
-
-        System.out.println();
-        System.out.format("%48s", "Details of The System Available Tickets\n\n");
-
-        //initializing and assigning total variable to print sum price of all the issued tickets
-        int total = 0;
-
-        if (ticket_list.size() != 0) {
-
-            total = print_ticket(ticket_list);
-
-        } else {
-            System.out.println("There is no Issued Tickets so far in the system.");
-        }
-        System.out.println("\n**********************************************");
-        System.out.println("The total price of the issued tickets  :  Rs." + total);
-        System.out.println("**********************************************\n");
-    }
-
     // modified after the submission to correct "print" method taking from the "Ticket" class
-    public static void show_tickets_info_modified (ArrayList<Ticket> ticket_list) {
+    public static void show_tickets_info (ArrayList<Ticket> ticket_list) {
 
         System.out.println();
         System.out.format("%48s", "Details of The System Available Tickets\n\n");
@@ -616,26 +596,8 @@ class Theatre {
 
     }
 
-    public static void sort_tickets(ArrayList<Ticket> ticket_list) {
-
-        System.out.println();
-        System.out.format("%45s", "Ascending Ordered List of Tickets\n\n");
-
-        if (ticket_list.size() != 0) {
-
-            //reference with the lecture notes
-            ArrayList<Ticket> sorted_ticket_list = MergeSort(ticket_list, 0, ticket_list.size() - 1);
-
-            print_ticket(sorted_ticket_list);
-
-        } else {
-            System.out.println("There is no Issued Tickets so far in the system.");
-        }
-        System.out.println();
-    }
-
     // modified after the submission to correct "print" method taking from the "Ticket" class
-    public static void sort_tickets_modified (ArrayList<Ticket> ticket_list) {
+    public static void sort_tickets (ArrayList<Ticket> ticket_list) {
 
         System.out.println();
         System.out.format("%45s", "Ascending Ordered List of Tickets\n\n");
@@ -697,37 +659,5 @@ class Theatre {
             idx_merged++;
         }
         return merged;
-    }
-
-    //to get and print ticket information from the ticket_list & sorted_ticket_list
-    public static int print_ticket(ArrayList<Ticket> ticket_list) {
-
-        int total = 0;
-
-        for (int i = 0; i < ticket_list.size(); i++) {
-            System.out.println("*** Ticket No [" + (i + 1) + "] ***");
-
-            System.out.format("%-13s", "Name");
-            System.out.print(": " + ticket_list.get(i).Person.getName() + '\n');
-
-            System.out.format("%-13s", "Surname");
-            System.out.print(": " + ticket_list.get(i).Person.getSurname() + '\n');
-
-            System.out.format("%-13s", "Email");
-            System.out.print(": " + ticket_list.get(i).Person.getEmail() + '\n');
-
-            System.out.format("%-13s", "Row Number");
-            System.out.print(": " + ticket_list.get(i).getRow() + '\n');
-
-            System.out.format("%-13s", "Seat Number");
-            System.out.print(": " + ticket_list.get(i).getSeat() + '\n');
-
-            System.out.format("%-13s", "Price");
-            System.out.print(": Rs." + ticket_list.get(i).getPrice() + "\n\n");
-
-            total += ticket_list.get(i).getPrice();
-
-        }
-        return total;
     }
 }
