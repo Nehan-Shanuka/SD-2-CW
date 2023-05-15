@@ -176,7 +176,7 @@ class Theatre {
 
                     } else if (rows == 3) {
 
-                        person_count = seat_status(seats, 1, 12, row_1, ticket_list, myTicket,
+                        person_count = seat_status(seats, 1, 20, row_3, ticket_list, myTicket,
                                 person_count, "3rd");
 
 
