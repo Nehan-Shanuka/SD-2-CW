@@ -246,58 +246,40 @@ class Theatre {
         System.out.format("%23s", " ");
         System.out.println("***********");
 
-        // to print a space to shows the path between left and right set of seats in the same row.
-        int count = 1;
-
         System.out.format("%22s", " ");
+        show_row_status(row_1, 6);
 
-        for (String i : row_1) {
-            if (!Objects.equals(i, "1")) {
-                System.out.print("O");
-            } else {
-                System.out.print("X");
-            }
-            if (count == 6) {
-                System.out.print(" ");
-            }
-            count++;
-        }
-
-        count = 1;
         System.out.println();
 
         System.out.format("%20s", " ");
+        show_row_status(row_2, 8);
 
-        for (String i : row_2) {
-            if (!Objects.equals(i, "1")) {
-                System.out.print("O");
-            } else {
-                System.out.print("X");
-            }
-            if (count == 8) {
-                System.out.print(" ");
-            }
-            count++;
-        }
-
-        count = 1;
         System.out.println();
 
         System.out.format("%18s", " ");
+        show_row_status(row_3, 10);
 
-        for (String i : row_3) {
+        System.out.println("\n");
+    }
+
+    //method for print seating area of each row
+    public static void show_row_status (String[] row, int count_num) {
+
+        // to print a space to shows the path between left and right set of seats in the same row.
+        int count = 1;
+
+        for (String i : row) {
             if (!Objects.equals(i, "1")) {
                 System.out.print("O");
             } else {
                 System.out.print("X");
             }
-            if (count == 10) {
+            if (count == count_num) {
                 System.out.print(" ");
             }
             count++;
         }
-        System.out.println();
-        System.out.println();
+
     }
 
     public static int cancel_ticket(String[] row_1, String[] row_2, String[] row_3, ArrayList<Ticket> ticket_list, int person_count) {
