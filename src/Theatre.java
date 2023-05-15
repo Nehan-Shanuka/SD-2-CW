@@ -415,47 +415,6 @@ class Theatre {
         show_available_row(row_2, "2");
         show_available_row(row_3, "3");
 
-/*
-        //initializing an arraylist to store currently available seat numbers in row_1
-        ArrayList<String> seat_num_row1 = new ArrayList<>();
-        for (int i = 1; i < 13; i++) {
-            if (!Objects.equals(row_1[i - 1], "1")) {
-                seat_num_row1.add(String.valueOf(i));
-            }
-        }
-        //print the array element with separating by a comma.
-        String joined_row1 = String.join(", ", seat_num_row1);
-        //https://stackoverflow.com/questions/18279622/print-out-elements-from-an-array-with-a-comma-between-the-elements
-
-        System.out.print("Seats available in row 1: ");
-        System.out.println(joined_row1);
-initializing an arraylist to store currently available seat numbers in row_2
-*/
-
-
-//        ArrayList<String> seat_num_row2 = new ArrayList<>();
-//        for (int i = 1; i < 17; i++) {
-//            if (!Objects.equals(row_2[i - 1], "1")) {
-//                seat_num_row2.add(String.valueOf(i));
-//            }
-//        }
-//        String joined_row2 = String.join(", ", seat_num_row2);
-//
-//        System.out.print("Seats available in row 2: ");
-//        System.out.println(joined_row2);
-//
-//        //initializing an arraylist to store currently available seat numbers in row_3
-//        ArrayList<String> seat_num_row3 = new ArrayList<>();
-//        for (int i = 1; i < 21; i++) {
-//            if (!Objects.equals(row_3[i - 1], "1")) {
-//                seat_num_row3.add(String.valueOf(i));
-//            }
-//        }
-//        String joined_row3 = String.join(", ", seat_num_row3);
-//
-//        System.out.print("Seats available in row 3: ");
-//        System.out.println(joined_row3);
-
         System.out.println();
     }
 
