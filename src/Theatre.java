@@ -163,53 +163,23 @@ class Theatre {
 
                     //checking the availability of seat that currant customer prefer
                     if (rows == 1) {
-                        if ((seats >= 1 && seats <= 12)) {
-                            if (Objects.equals(row_1[seats - 1], "1")) {
 
-                                System.out.println("Sorry! The seat has been reserved already. Please Try another seat.");
-                                System.out.println("Please make sure that you have checked what seats are Available now through our system.");
+                        person_count = seat_status(seats, 1, 12, row_1, ticket_list, myTicket,
+                                person_count, "1st");
 
-                            } else {
-                                row_1[seats - 1] = "1";
-                                ticket_list.add(myTicket);
-                                //myTicket.print(name, surname, email, myTicket.price());
-                                person_count++;
-                            }
-                        } else {
-                            System.out.println("Sorry! The seat number you chose does not exist in the 1st row. Please Try with a valid seat number.");
-                        }
+
                     } else if (rows == 2) {
-                        if ((seats >= 1 && seats <= 16)) {
-                            if (Objects.equals(row_2[seats - 1], "1")) {
 
-                                System.out.println("Sorry! The seat has been reserved already. Please Try another seat.");
-                                System.out.println("Please make sure that you have checked what seats are Available now through our system.");
+                        person_count = seat_status(seats, 1, 16, row_2, ticket_list, myTicket,
+                                person_count, "2nd");
 
-                            } else {
-                                row_2[seats - 1] = "1";
-                                ticket_list.add(myTicket);
-                                //myTicket.print(name, surname, email, myTicket.price());
-                                person_count++;
-                            }
-                        } else {
-                            System.out.println("Sorry! The seat number you chose does not exist in the 2nd row. Please Try with a valid seat number.");
-                        }
+
                     } else if (rows == 3) {
-                        if ((seats >= 1 && seats <= 20)) {
-                            if (Objects.equals(row_3[seats - 1], "1")) {
 
-                                System.out.println("Sorry! The seat has been reserved already. Please Try another seat.");
-                                System.out.println("Please make sure that you have checked what seats are Available now through our system.");
+                        person_count = seat_status(seats, 1, 12, row_1, ticket_list, myTicket,
+                                person_count, "3rd");
 
-                            } else {
-                                row_3[seats - 1] = "1";
-                                ticket_list.add(myTicket);
-                                //myTicket.print(name, surname, email, myTicket.price());
-                                person_count++;
-                            }
-                        } else {
-                            System.out.println("Sorry! The seat number you chose does not exist in the 3rd row. Please Try with a valid seat number.");
-                        }
+
                     } else {
                         System.out.println("Sorry! The row number you chose does not exists. Please Try with valid seat number");
                     }
@@ -241,6 +211,26 @@ class Theatre {
 
         } while (Objects.equals(more_ticket, "yes"));
 
+        return person_count;
+    }
+
+    //method for change the seat status in the system when buying a ticket
+    public static int seat_status (int seat, int first_seat_num, int last_seat_num, String[] row, ArrayList<Ticket> ticket_list,
+                                   Ticket ticket_obj, int person_count, String row_number) {
+        if (seat >= first_seat_num && seat <= last_seat_num) {
+            if ((Objects.equals(row[seat - 1], "1"))) {
+                System.out.println("Sorry! The seat has been reserved already. Please Try another seat.");
+                System.out.println("Please make sure that you have checked what seats are Available now through our system.");
+            }
+            else {
+                row[seat - 1] = "1";
+                ticket_list.add(ticket_obj);
+                person_count++;
+            }
+        }
+        else {
+            System.out.println("Sorry! The seat number uou choose does not exist in the "+ row_number +" row. Please Try with a valid seat number.");
+        }
         return person_count;
     }
 
@@ -660,4 +650,5 @@ class Theatre {
         }
         return merged;
     }
+
 }
