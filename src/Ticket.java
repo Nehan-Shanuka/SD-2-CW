@@ -14,19 +14,6 @@ public class Ticket {
         this.Person = new Person(name, surname, email);
         this.price = price();
 
-//        Person = new Person(option, name, surname, email);
-//
-//        Scanner input = new Scanner(System.in);
-//
-//        System.out.format("%-23s","Enter the row number");
-//        System.out.print(":   ");
-//        row = input.nextInt();
-//
-//        System.out.format("%-23s","Enter the seat number");
-//        System.out.print(":   ");
-//        seat = input.nextInt();
-//
-//        this.price = price();
     }
 
     public void print(){
@@ -49,7 +36,7 @@ public class Ticket {
         System.out.println(":  " + this.seat);
 
         System.out.format("%-25s","Your ticket price");
-        System.out.println(":  Rs." + price);
+        System.out.println(":  Rs." + price + "\n");
     }
     public int price() {
 

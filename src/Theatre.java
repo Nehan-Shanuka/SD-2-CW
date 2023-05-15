@@ -610,7 +610,7 @@ class Theatre {
         } else {
             System.out.println("There is no Issued Tickets so far in the system.");
         }
-        System.out.println("\n**********************************************");
+        System.out.println("**********************************************");
         System.out.println("The total price of the issued tickets  :  Rs." + total);
         System.out.println("**********************************************\n");
 
@@ -650,9 +650,8 @@ class Theatre {
             }
 
         } else {
-            System.out.println("There is no Issued Tickets so far in the system.");
+            System.out.println("There is no Issued Tickets so far in the system.\n");
         }
-        System.out.println();
     }
 
 
